@@ -8,7 +8,10 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
-    SQLALCHEMY_TRACK_MODIFICATIONS=False 
+    SQLALCHEMY_TRACK_MODIFICATIONS = False 
+
+    SECURITY_TRACKABLE = True
+
 
 class TestingConfig(Config):
     TESTING = True

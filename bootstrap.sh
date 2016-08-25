@@ -8,7 +8,7 @@ apt-get update
 PG_VERSION=8.4
 
 DB_NAME=asurgen_db
-export DATABASE_URI='postgresql:///asurgen_db'
+echo "export DATABASE_URI='postgresql:///asurgen_db'" >> ~/.profile
 
 apt-get -y install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION" "postgresql-server-dev-$PG_VERSION"
 
@@ -37,3 +37,6 @@ pip install flask sqlalchemy uwsgi psycopg2
 pip install flask-security flask-sqlalchemy
 #apt-get -y install nginx git gunicorn
 #rm /etc/nginx/sites-enabled/default
+
+#set up app's database tables and fill with initial values
+python /vagrant/film_search/initialize.py
