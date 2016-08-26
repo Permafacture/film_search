@@ -1,3 +1,31 @@
 {% extends "base.html" %}
-{% block content %}<h1>Hello admin</h1>{% endblock %}
+{% block content %}
+  <h1>Hello admin</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Last IP</th>
+          <th>Last Logged In</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for user in users%}
+          <tr>
+            <td>{{user.email}}</td>
+            {%if user.current_login_ip%}
+              <td>{{user.current_login_ip}}</td>
+              <td>{{user.current_login_at.strftime('%Y-%m-%d %H:%M')}}</td>
+              <td>Currently Logged in</td>
+            {%elif user.last_login_ip%}
+              <td>{{user.last_login_ip}}</td>
+              <td>{{user.last_login_at.strftime('%Y-%m-%d %H:%M')}}</td>
+            {%else%}
+              <td>This user has never logged in</td>
+            {%endif%}
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+{% endblock %}
 

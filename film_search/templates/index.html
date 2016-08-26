@@ -1,3 +1,53 @@
 {% extends "base.html" %}
-{% block content %}<h1>Hello world</h1>{% endblock %}
+{% block content %}
+
+  <h1>OMdb Search</h1>
+    <div class="form-inline">
+      <div class="form-group">
+        <label for="search">Movie Title</label>
+        <input type="text" class="form-control" id="search" placeholder="Movie title">
+      </div>
+      <button type="button" class="btn btn-default" id="submit-button">Search</button>
+    </div>
+    <div id="result">This is a result</div>
+    <script>
+
+      function display_result(result) {
+        if (result.Response === 'True') {
+          var table = '<table><thead><th>Title</th><th>Released</th><th>Poster</th></thead><tbody>';
+
+
+          $('#result').text(result);
+        }
+        else {
+          $('#result').text("No results match your query");
+        }
+      }
+
+      function result_to_row(result) {
+        var response = '<tr><td>'+result.Title+'</td><td>'+result.Year+'</td>'
+        if (response.Poster === 'N/A') {
+          response += '<td>N/A</td>';
+        }
+        else {
+          response += '<td><a href="'+response.Poster+'">[link]</a></td>';
+        }
+        return response+'</tr>'
+
+
+      function make_request(string) {
+        var request = $.ajax({
+          url:'http://www.omdbapi.com/?',
+          type:"GET",
+          data:{s:string,plot:"short",r:"json"}
+          });
+        request.done(function (msg) {display_result(msg);})
+        request.fail(function (something, msg) {$('#result').text("Request failed:"+msg)})
+      }
+
+        
+    $("#submit-button").click(function (){make_request($('#search').val())});
+    </script> 
+    
+{% endblock %}
 

@@ -50,7 +50,8 @@ def home():
 @app.route('/admin')
 @roles_accepted('admin')
 def admin():
-    return render_template('admin.html')
+    users = User.query.order_by('last_login_at')
+    return render_template('admin.html',users=users)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port="8080")
