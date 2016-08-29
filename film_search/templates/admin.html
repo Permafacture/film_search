@@ -16,10 +16,6 @@
             {%if user.current_login_ip%}
               <td>{{user.current_login_ip}}</td>
               <td>{{user.current_login_at.strftime('%Y-%m-%d %H:%M')}}</td>
-              <td>Currently Logged in</td>
-            {%elif user.last_login_ip%}
-              <td>{{user.last_login_ip}}</td>
-              <td>{{user.last_login_at.strftime('%Y-%m-%d %H:%M')}}</td>
             {%else%}
               <td>This user has never logged in</td>
             {%endif%}

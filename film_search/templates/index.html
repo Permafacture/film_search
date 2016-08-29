@@ -13,40 +13,46 @@
     <div id="result"></div>
     <script>
 
+
+        function failed() {
+          $('#result').text("No movies match your query");
+        }
+
         function display_results(results) {
           if (results.Response === 'True') {
-            var table = '<table class="table table-bordered"><thead><th>Title</th><th>Released</th><th>Poster</th></thead><tbody>';
-            table += generate_table(results.Search) + '</tbody>' 
-
-            $('#result').html(table);
+            var header = '<table class="table table-bordered"><thead><th>Title</th><th>Released</th></thead>';
+            var body = generate_film_table(results.Search);
+            if (body.length > 1){
+                $('#result').html(header+'<tbody>'+body+'</tbody>');
+            }
+            else { failed();} //none of the results were movies
           }
-          else {
-            $('#result').text("No results match your query");
-          }
+          else {failed();} //there were no results
         }
 
         function result_to_row(result) {
           var response = '<tr><td>'+result.Title+'</td><td>'+result.Year+'</td>'
-          if (result.Poster === 'N/A') {
-            response += '<td>N/A</td>';
-          }
-          else {
-            response += '<td><a href="'+result.Poster+'">[link]</a></td>';
-          }
+          //if (result.Plot === 'N/A') {
+          //  response += '<td>N/A</td>';
+          //}
+          //else {
+          //  response += '<td>'+result.Plot+'</td>';
+          //}
           return response+'</tr>'
         }
 
-        function generate_table(list) {
+        function generate_film_table(results) {
             var text = '';
-            for (i=0; i<list.length; i++) {
-              text += result_to_row(list[i]) + "\n";
+            for (i=0; i<results.length; i++) {
+              if (results[i].Type == 'movie') {
+                text += result_to_row(results[i]) + "\n";
+              }
             }
             return text
         }
 
 
         function make_request(string) {
-          alert(string);
           var request = $.ajax({
             url:'http://www.omdbapi.com/?',
             type:"GET",

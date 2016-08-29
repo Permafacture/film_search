@@ -1,12 +1,12 @@
 from flask import Flask, render_template
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.security import Security, SQLAlchemyUserDatastore, \
+from flask_sqlalchemy import SQLAlchemy
+from flask_security import Security, SQLAlchemyUserDatastore, \
     UserMixin, RoleMixin, login_required, roles_accepted
 import config
 
 # Create app
 app = Flask(__name__)
-app.config.from_object(config.TestingConfig)
+app.config.from_object(config.Config)
 
 # Create database connection object
 db = SQLAlchemy(app)

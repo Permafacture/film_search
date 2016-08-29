@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %} 
+{% include "security/_messages.html" %} 
+{% block content %}
+<div class="container" align="middle">
+<form action="{{ url_for_security('register') }}" method="POST" name="register_user_form" class="form-signin"> 
+        <h2 class="form-signin-heading">Register</h2>
+        <div class="form-group col-sm-4" align="left">
+  {{ register_user_form.hidden_tag() }} 
+  {{ render_field_with_errors(register_user_form.email, class_="form-control", 
+         placeholder="Email" ) }} 
+  {{ render_field_with_errors(register_user_form.password, class_="form-control", 
+         placeholder="Password" ) }} 
+  {% if register_user_form.password_confirm %} 
+    {{ render_field_with_errors(register_user_form.password_confirm, class_="form-control", 
+         placeholder="Confirm Password" ) }} 
+  {% endif %} 
+  {{ render_field(register_user_form.submit, class_="btn btn-default") }} 
+</form> 
+        </div>
+        {%endblock%}
