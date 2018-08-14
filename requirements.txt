@@ -6,26 +6,24 @@ Flask-SQLAlchemy==2.1
 Flask-Security==1.7.5
 Flask-Testing==0.5.0
 Flask-WTF==0.12
-GnuPGInterface==0.3.2
+# GnuPGInterface==0.3.2
 Jinja2==2.8
 MarkupSafe==0.23
 SQLAlchemy==1.1.0b3
 WTForms==2.1
 Werkzeug==0.11.10
-apt-xapian-index==0.44
+# apt-xapian-index==0.44
 argparse==1.2.1
 blinker==1.4
-chardet==2.0.1
+# chardet==2.0.1
 click==6.6
-command-not-found==0.2.44
-distribute==0.6.24
+# command-not-found==0.2.44
+# distribute
 itsdangerous==0.24
-language-selector==0.1
+# language-selector==0.1
 passlib==1.6.5
-psycopg2==2.6.2
-python-apt==0.8.3ubuntu7
-python-debian==0.1.21ubuntu1
-uWSGI==2.0.13.1
-ufw==0.31.1-1
-virtualenv==1.7.1.2
-wsgiref==0.1.2
+# psycopg2==2.6.2
+# python-apt==0.8.3ubuntu7
+# python-debian==0.1.21ubuntu1
+uWSGI
+# ufw==0.31.1-1
